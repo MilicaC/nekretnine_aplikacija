@@ -1,0 +1,43 @@
+<ion-header no-border>
+  <div class="login header ion-padding">
+    <img class="logo-img" src="assets/real-estate-logo-template_1156-724.jpg">
+  </div>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]=loginForm (ngSubmit)="Login()">
+    <div class="center">
+
+      <div heading-column-lr>
+        <h2 big-heading>Prijavi se na svoj nalog</h2>
+      </div>
+      <ion-label></ion-label>
+      <ion-item transparent>
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-input placeholder="Korisničko ime" type="email" ngModel name="email" required email #email="ngModel"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="email.invalid && email.touched">
+        <ion-label>Should be a valid email address.</ion-label>
+      </ion-item>
+
+      <ion-item transparent>
+        <ion-icon name="lock-open-outline"></ion-icon>
+        <ion-input  placeholder="Lozinka" type="password" ngModel name="password" required minlength="8" #password="ngModel"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" *ngIf="password.invalid && password.touched">
+        <ion-label>Should be minimum 8 characters long.</ion-label>
+      </ion-item>
+
+      <ion-button color="primary" class="ion-button-class" shape="round" fill="solid"  expand="block" (click)="login(loginForm)"
+      [disabled]="loginForm.invalid">Prijavi se</ion-button>
+      <ion-label class="ion-text-center">Nisi registrovan?<span class="link-button" (click)="Register()">Registruj se.</span>
+      </ion-label>
+    </div>
+
+
+  </form>
+
+</ion-content>
