@@ -74,7 +74,31 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --theme-color:#ffca22;
+  --theme-black:#000000;
+  --ion-color-gray:#d7d8da;
 }
+
+//font
+
+@font-face {
+  font-family: 'Heeba-Bold';
+  src: url("../assets/fonts/heebo.bold.ttf");
+}
+@font-face {
+  font-family: 'Heeba-Regular';
+  src: url("../assets/fonts/heebo.regular.ttf");
+}
+.center{
+  position: absolute;
+  left:50%;
+  top:40%;
+  --webkit-transform:translate(-49%, -49%);
+  transform: translate(-49%, -49%);
+  width: 90%;
+}
+
 
 @media (prefers-color-scheme: dark) {
   /*

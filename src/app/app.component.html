@@ -1,3 +1,55 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+
+  <ion-menu side="start" menu-id="first" contentId="main" >
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Real Estate</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content >
+      <ion-list>
+        <ion-menu-toggle>
+        <ion-item routerLink="/search" ><ion-icon name="search-circle-outline" ></ion-icon>
+             Pretrazi nekrentnine    </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+        <ion-item  routerLink="/add-new-ad"><ion-icon name="add-circle-outline"></ion-icon>
+          Postavi svoj oglas</ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+        <ion-item (click)="logout()"><ion-icon name="log-out-outline"></ion-icon>Odjavi se</ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+
+
+    </ion-menu>
+
+
+
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom" >
+      <ion-tab-button tab="profile">
+        <ion-icon name="accessibility-outline"></ion-icon>
+        <ion-label>Profile</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="saved-ad">
+        <ion-icon name="bookmark-outline"></ion-icon>
+        <ion-label>Saved</ion-label>
+      </ion-tab-button>
+
+
+
+
+    </ion-tab-bar>
+  </ion-tabs>
+
 </ion-app>

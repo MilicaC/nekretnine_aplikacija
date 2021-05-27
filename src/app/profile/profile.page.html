@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button>
+
+      </ion-menu-button>
+      <ion-button color="primary" class="backbtn" routerLink="/home" routerDirection="back">
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notification-outline" color="dark"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="title">Nikola Golubović</h1>
+
+  <div class="profile-info">
+    <ion-item>
+      <ion-label position="floating">Ad nuber</ion-label>
+      <ion-input value="3"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Date of the last ad</ion-label>
+      <ion-input value="4.5.2021."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Average time between ads</ion-label>
+      <ion-input value="17 days"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Average rating</ion-label>
+      <ion-input value="4.37"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">My advertisements</ion-label>
+      <ion-input value=""></ion-input>
+    </ion-item>
+  </div>
+
+<ion-list inset="true" *ngFor="let advertisement of advertisementsList">
+
+  <ion-item href="/home/{{advertisement.id}}" detail>
+    <ion-thumbnail class="ion-margin-end">
+      <ion-img src="{{advertisement.imageURL}}"></ion-img>
+    </ion-thumbnail>
+    <ion-label class="ion-text-wrap">{{advertisement.estateName}}</ion-label>
+    <ion-label>{{advertisement.estatePrice}}</ion-label>
+  </ion-item>
+
+
+</ion-list>
+<ion-button (click)="openModal()" expand="block" shape="round">My contacts</ion-button>
+
+
+</ion-content>
