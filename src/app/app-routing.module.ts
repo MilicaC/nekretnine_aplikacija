@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'add-new-ad',
     loadChildren: () => import('./add-new-ad/add-new-ad.module').then( m => m.AddNewAdPageModule),
-    canLoad:[AuthGuard]
+    // canLoad:[AuthGuard]
   },
   {
     path: 'profile',

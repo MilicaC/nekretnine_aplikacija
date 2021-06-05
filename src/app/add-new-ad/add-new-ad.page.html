@@ -13,56 +13,56 @@
 </ion-header>
 
 <ion-content>
-
+<form [formGroup]="AddNewAd" (ngSubmit)="addNewAd()">
   <ion-item> <ion-label class="adALabel1" >Address </ion-label>  </ion-item>
-    <ion-item>  <ion-input placeholder="Enter address"></ion-input>  </ion-item>
-      <ion-item> <ion-input placeholder="Enter town"></ion-input>  </ion-item>
-        <ion-item>  <ion-input placeholder="Enter country"></ion-input>  </ion-item>
+    <ion-item>  <ion-input placeholder="Enter address" formControlName="Adresa"></ion-input>  </ion-item>
+      <ion-item> <ion-input placeholder="Enter town" formControlName="Grad"></ion-input>  </ion-item>
+        <ion-item>  <ion-input placeholder="Enter country" formControlName="Drzava"></ion-input>  </ion-item>
 
   <ion-item>
     <ion-label class="adALabel2" > Year of construction  </ion-label>
-  <ion-input type="number"></ion-input>
+  <ion-input type="number" formControlName="GodinaGradnje"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label class="adALabel2" > Square footage </ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" formControlName="Kvadratura"></ion-input>
     m2
   </ion-item>
 
   <ion-item>
-    <ion-label class="adALabel2" > Price </ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-label class="adALabel2"  > Price </ion-label>
+    <ion-input type="number" formControlName="Cena"></ion-input>
     €
   </ion-item>
 
 
-      <ion-item >   <ion-checkbox checked="false"></ion-checkbox><ion-label class="adALabel2" >     Central heating </ion-label>
+      <ion-item >   <ion-checkbox checked="false" formControlName="CentralnoGrejanje"></ion-checkbox><ion-label class="adALabel2" >     Central heating </ion-label>
     </ion-item>
 
       <ion-item >
-        <ion-checkbox checked="false"></ion-checkbox><ion-label class="adALabel2" >    Parking place </ion-label>
+        <ion-checkbox checked="false" formControlName="ParkingMesto"></ion-checkbox><ion-label class="adALabel2" >    Parking place </ion-label>
          </ion-item>
   <ion-item >
-    <ion-checkbox checked="false"></ion-checkbox><ion-label class="adALabel2" >    Registered </ion-label>
+    <ion-checkbox checked="false" formControlName="Uknjizeno"></ion-checkbox><ion-label class="adALabel2" >    Registered </ion-label>
   </ion-item>
 
   <ion-item >
-    <ion-checkbox checked="false"></ion-checkbox><ion-label class="adALabel2" >    Furnished house/apartment </ion-label>
+    <ion-checkbox checked="false" formControlName="SredjenStan"></ion-checkbox><ion-label class="adALabel2" >    Furnished house/apartment </ion-label>
   </ion-item>
 
   <ion-item>
     <ion-label  position="stacked" > Phone number </ion-label>
-    <ion-input type="number" placeholder="06********"></ion-input>
+    <ion-input type="number" placeholder="06********" formControlName="BrojTelefona" ></ion-input>
   </ion-item>
   <ion-item>
 
-    <ion-label  position="stacked"> E-mail </ion-label>
-    <ion-input placeholder="*********@*****.com"></ion-input>
+    <ion-label  position="stacked" > E-mail </ion-label>
+    <ion-input placeholder="*********@*****.com" formControlName="Email"></ion-input>
   </ion-item>
 
   <ion-list>
-    <ion-radio-group value="biff">
+    <ion-radio-group value="biff" formControlName="TipStana">
       <ion-list-header>
         <ion-label>Type of property </ion-label>
       </ion-list-header>
@@ -81,7 +81,58 @@
     </ion-radio-group>
   </ion-list>
 
-  <ion-button  routerLink="/house-ad" class="buttonNext" align="right">
-    Next
-  </ion-button>
+  
+
+  
+    <ion-list>
+      <ion-radio-group value="biff" formControlName="VrstaProdaje">
+        <ion-list-header>
+          <ion-label>Type of sell</ion-label>
+        </ion-list-header>
+  
+        <ion-item>
+          <ion-label>Sale </ion-label>
+          <ion-radio slot="start" value="sale"></ion-radio>
+        </ion-item>
+  
+  
+  
+  
+        <ion-item>
+          <ion-label>Issuance per month</ion-label>
+          <ion-radio slot="start" value="month"></ion-radio>
+        </ion-item>
+  
+  
+        <ion-item>
+          <ion-label>Issuance per day</ion-label>
+          <ion-radio slot="start" value="day"></ion-radio>
+        </ion-item>
+  
+  
+  
+      </ion-radio-group>
+    </ion-list>
+  
+    <ion-item>
+      <ion-label class="adALabel2"  > Number of floors </ion-label>
+      <ion-input type="number" formControlName="BrojSpratova"></ion-input>
+  
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="adALabel2"  > Yard area </ion-label>
+      <ion-input type="number"></ion-input>
+   m2
+    </ion-item>
+    <ion-item>
+      <ion-icon name="images"></ion-icon>
+      <ion-label class="adALabel2" formControlName="UrlSlike"> Add photo </ion-label>
+      <ion-input type="number"></ion-input>
+  
+    </ion-item>
+    <ion-button class="button">Add new ad</ion-button>
+
+  
+</form>
 </ion-content>
