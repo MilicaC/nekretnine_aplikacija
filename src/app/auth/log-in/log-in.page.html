@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <form [formGroup]=loginForm (ngSubmit)="Login()">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <div class="center">
 
       <div heading-column-lr>
@@ -15,7 +15,7 @@
       <ion-label></ion-label>
       <ion-item transparent>
         <ion-icon name="person-outline"></ion-icon>
-        <ion-input placeholder="Korisničko ime" type="email" ngModel name="email" required email #email="ngModel"></ion-input>
+        <ion-input  type="string" placeholder="Korisničko ime" ngModel name="Email" email required  #email="ngModel"></ion-input>
       </ion-item>
 
       <ion-item lines="none" *ngIf="email.invalid && email.touched">
@@ -24,15 +24,15 @@
 
       <ion-item transparent>
         <ion-icon name="lock-open-outline"></ion-icon>
-        <ion-input  placeholder="Lozinka" type="password" ngModel name="password" required minlength="8" #password="ngModel"></ion-input>
+        <ion-input  placeholder="Lozinka" type="password" ngModel name="Lozinka" required minlength="8" #password="ngModel"></ion-input>
       </ion-item>
 
       <ion-item lines="none" *ngIf="password.invalid && password.touched">
         <ion-label>Should be minimum 8 characters long.</ion-label>
       </ion-item>
 
-      <ion-button color="primary" class="ion-button-class" shape="round" fill="solid"  expand="block" (click)="login(loginForm)"
-      [disabled]="loginForm.invalid">Prijavi se</ion-button>
+      <ion-button type = "submit" color="primary" class="ion-button-class" shape="round" fill="solid"  expand="block"
+      [disabled]='loginForm.invalid'>Prijavi se</ion-button>
       <ion-label class="ion-text-center">Nisi registrovan?<span class="link-button" (click)="Register()">Registruj se.</span>
       </ion-label>
     </div>
