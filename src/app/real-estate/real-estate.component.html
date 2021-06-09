@@ -2,8 +2,8 @@
     <ion-card-header >
 
 
-      <ion-card-subtitle>{{realEstate.address}}</ion-card-subtitle>
-      <ion-card-title>{{realEstate.address}}</ion-card-title>
+      <ion-card-subtitle>{{nekretnine.Adresa}}</ion-card-subtitle>
+      <ion-card-title>{{nekretnine.Grad}}</ion-card-title>
 
       <ion-button color="light" >
 
@@ -14,8 +14,8 @@
     </ion-card-header>
 
     <ion-card-content>
-      <img src={{realEstate.imageUrl}} class="mainImage"/>
-      <div class="price"> € {{realEstate.price}}</div>
-      {{realEstate.description}}
+      <img src={{nekretnine.UrlSlike}} class="mainImage"/>
+      <div class="price"> € {{nekretnine.Cena}}</div>
+      {{nekretnine.Opis}}
     </ion-card-content>
   </ion-card>

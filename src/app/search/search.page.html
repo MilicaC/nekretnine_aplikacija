@@ -6,14 +6,14 @@
       </ion-menu-button>
     </ion-buttons>
 
-    <ion-title>Search</ion-title>
 
-    <ion-searchbar class="searchBar"  color="light"></ion-searchbar>
+
+    <ion-searchbar class="searchBar"   color="light" debounce="500" (ionChange)="_ionChange($event)"></ion-searchbar>
 
   </ion-toolbar>
   <ion-item>
-  <ion-button  >
-    <ion-icon name="options">
+  <ion-button  (click) ="presentActionSheet()">
+    <ion-icon name="options" >
     </ion-icon>
   </ion-button>
     <ion-label class="adALabel2"> Filters</ion-label>
@@ -21,5 +21,21 @@
 </ion-header>
 
 <ion-content>
+  <ion-list  *ngFor=" let Nekretnina of nek " [nekretnine]="Nekretnina">
+
+    <ion-item >
+      <ion-thumbnail class="ion-margin-end">
+        
+        <ion-img src="{{Nekretnina.UrlSlike}}"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap"  ><div class="adrGrad">{{Nekretnina.Adresa}},{{Nekretnina.Grad}}</div> </ion-label>
+      <ion-label> <div class="adrGrad">    {{Nekretnina.Cena}} € </div></ion-label>
+      <ion-item href="/home/{{Nekretnina.id}}" detail></ion-item>
+    </ion-item>
+  
+  
+  </ion-list>
+  
+  
 
 </ion-content>

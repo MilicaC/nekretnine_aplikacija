@@ -36,10 +36,7 @@ const routes: Routes = [
     path: 'apartment-ad',
     loadChildren: () => import('./apartment-ad/apartment-ad.module').then( m => m.ApartmentAdPageModule)
   },
-  {
-    path: 'house-ad',
-    loadChildren: () => import('./house-ad/house-ad.module').then( m => m.HouseAdPageModule)
-  },
+ 
   {
     path: 'log-in',
     loadChildren: () => import('./auth/log-in/log-in.module').then( m => m.LogInPageModule)
