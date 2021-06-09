@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {FormControl, FormGroup, NgForm, NgModel} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Author } from '../auth.service';
+//import { Autor } from '../auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -13,21 +13,26 @@ import { Author } from '../auth.service';
 export class LogInPage implements OnInit {
   isSignedIn = false;
   loginForm: FormGroup;
+
+ 
+
+
   constructor(private authService: AuthService, private router: Router,private http: HttpClient) { }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      Ime: new FormControl('name'),
-      Lozinka: new FormControl(null),
+   // this.loginForm = new FormGroup({
+     // Email: new FormControl(),
+      //Lozinka: new FormControl(),
      
-    });
+    //});
+  }
      
    /* if (localStorage.getItem('user') !== null) {
       this.isSignedIn = true;
     } else {
     }
     this.isSignedIn = false;*/
-  }
+  //}
   
  /* async login(form: NgForm, email: string, password: string) {
     await this.authService.signin(email,password);
@@ -41,7 +46,19 @@ export class LogInPage implements OnInit {
   }
 
   login(loginForm: NgForm) {
+    //this.isLoading = true;
     
-    this.router.navigateByUrl('/home');
+    console.log(loginForm);
+    if(loginForm.valid){
+    this.authService.logIn(loginForm.value).subscribe(resData=>{
+      console.log('prijava uspesna');
+      console.log(resData);
+     // this.isLoading = false;
+      this.router.navigateByUrl('/home');
+    });
   }
+
+  }
+
+
 }

@@ -2,12 +2,25 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import { NgForm } from '@angular/forms';
-export interface Author{
-  Ime: string,
-     Prezime: string,
+
+interface AuthResponseData{
+kind: string;
+idToken: string;
+email: string;
+refreshToken:string;
+locald: string;
+expiresIn: string;
+registered?: boolean;
+
+
+}
+
+interface UserData{
+  Ime?: string,
+     Prezime?: string,
      Email: string,
      Lozinka: string,
-     Ponovilozinku: string
+     Ponovilozinku?: string
 }
 
 
@@ -27,23 +40,24 @@ export class AuthService {
     // eslint-disable-next-line no-underscore-dangle
     return this._isUserAuthenticated;
   }
-  register(){
-  }
+ 
 
-  logIn(){
+  logIn(user: UserData){
     // eslint-disable-next-line no-underscore-dangle
     this._isUserAuthenticated = true;
-  }
-  logOut(){
-    this.firebaseAuth.signOut();
-    localStorage.removeItem('user');
+    return this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey2}`,
+    {email: user.Email, password:user.Lozinka, returnSecureToken: true});
+
+
   }
 
 
-  addAuthor(Ime:string,Prezime:string,Email:string,Lozinka:string,PonovnaLozinka:string){
-     if(PonovnaLozinka==Lozinka){
-    return this.http.post<{name:string}>(`https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/auth.json`,
-    {Ime,Prezime,Email,Lozinka,PonovnaLozinka});
+  addAuthor(user: UserData){
+    this._isUserAuthenticated = true;
+     if(user.Ponovilozinku==user.Lozinka){
+    return this.http.post<AuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey2}`,
+      {ime: user.Ime, prezime: user.Prezime, email: user.Email, password:user.Lozinka, password2:user.Ponovilozinku,
+      returnSecureToken: true});
     
     }
     else console.log("Neuspela registracija")
