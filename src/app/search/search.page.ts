@@ -61,8 +61,8 @@ export class SearchPage implements OnInit {
               ParkingMesto:nekrentineData[key].ParkingMesto,
               Uknjizen:nekrentineData[key].Uknjizen,
               NamestenStan:nekrentineData[key].NamestenStan,
-              Opis:nekrentineData[key].Opis
-              
+              Opis:nekrentineData[key].Opis,
+              UserID:nekrentineData[key].UserID
              });
            }
    
@@ -153,8 +153,8 @@ export class SearchPage implements OnInit {
               ParkingMesto:nekrentineData[key].ParkingMesto,
               Uknjizen:nekrentineData[key].Uknjizen,
               NamestenStan:nekrentineData[key].NamestenStan,
-              Opis:nekrentineData[key].Opis
-              
+              Opis:nekrentineData[key].Opis,
+              UserID:nekrentineData[key].UserID
              });
            }
          

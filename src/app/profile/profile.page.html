@@ -25,29 +25,7 @@
   <h1 class="title">Nikola Golubović</h1>
   <ion-label></ion-label>
 
-  <div class="profile-info">
-    <ion-item>
-      <ion-label position="floating">Ad nuber</ion-label>
-      <ion-input value="3"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Date of the last ad</ion-label>
-      <ion-input value="4.5.2021."></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Average time between ads</ion-label>
-      <ion-input value="17 days"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Average rating</ion-label>
-      <ion-input value="4.37"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Moji oglasi</ion-label>
-      <ion-input value=""></ion-input>
-    </ion-item>
-  </div>
-
+  
 <ion-list #lista>
 <ion-item-sliding *ngFor="let advertisement of advertisementsList">
   <ion-item>
@@ -70,7 +48,6 @@
 </ion-item-sliding>
 
 </ion-list>
-<ion-button (click)="openModal()" expand="block" shape="round">My contacts</ion-button>
 
 
 </ion-content>
