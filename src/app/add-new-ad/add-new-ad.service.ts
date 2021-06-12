@@ -26,6 +26,8 @@ export interface Nekretnina{
   providedIn: 'root'
 })
 export class AddNewAdService {
+nek: Nekretnina[];
+
   VratiSveNekretnine() {
    
     return  this.http.get<{[key: string]:Nekretnina}>(`https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/add-new-ad.json`)

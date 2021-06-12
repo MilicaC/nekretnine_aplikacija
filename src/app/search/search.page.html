@@ -5,14 +5,15 @@
 
       </ion-menu-button>
     </ion-buttons>
-
+  
 
 
     <ion-searchbar class="searchBar"   color="light" debounce="500" (ionChange)="_ionChange($event)"></ion-searchbar>
 
+
   </ion-toolbar>
   <ion-item>
-  <ion-button  (click) ="presentActionSheet()">
+  <ion-button  (click)="OtvoriFilter()" >
     <ion-icon name="options" >
     </ion-icon>
   </ion-button>
