@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,6 +8,7 @@ import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
 import { RealEstateComponent } from '../real-estate/real-estate.component';
+import { FilterModalComponent } from './filter-modal/filter-modal.component';
 
 
 
@@ -16,8 +17,11 @@ import { RealEstateComponent } from '../real-estate/real-estate.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchPageRoutingModule
+    SearchPageRoutingModule,
+    ReactiveFormsModule
+
   ],
-  declarations: [SearchPage,RealEstateComponent]
+  declarations: [SearchPage,RealEstateComponent,FilterModalComponent]
+
 })
 export class SearchPageModule {}
