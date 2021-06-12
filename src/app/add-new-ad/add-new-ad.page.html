@@ -8,45 +8,45 @@
       </ion-menu-button>
     </ion-buttons>
 
-    <ion-title>Add new ad</ion-title>
+    <ion-title>Dodaj novi oglas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
 <form [formGroup]=AddREForm (ngSubmit)="addNewAd()">
-  <ion-item> <ion-label class="adALabel1"  >Address </ion-label>  </ion-item>
-    <ion-item>  <ion-input placeholder="Enter address" formControlName="Adresa" type="text"  required minlength="2"></ion-input>  </ion-item>
-      <ion-item> <ion-input placeholder="Enter town" formControlName="Grad" type="text" required minlength="2" > </ion-input>  </ion-item>
-        <ion-item>  <ion-input placeholder="Enter country" formControlName="Drzava" type="text" required minlength="2"> </ion-input>  </ion-item>
+  <ion-item> <ion-label class="adALabel1"  >Adresa </ion-label>  </ion-item>
+    <ion-item>  <ion-input placeholder="Unesi adresu" formControlName="Adresa" type="text"  required minlength="2"></ion-input>  </ion-item>
+      <ion-item> <ion-input placeholder="Unesi grad" formControlName="Grad" type="text" required minlength="2" > </ion-input>  </ion-item>
+        <ion-item>  <ion-input placeholder="Unesi državu" formControlName="Drzava" type="text" required minlength="2"> </ion-input>  </ion-item>
 
   <ion-item>
-    <ion-label class="adALabel2" > Year of construction  </ion-label>
+    <ion-label class="adALabel2" > Godina izgradnje  </ion-label>
   <ion-input type="number" formControlName="GodinaGradnje"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label class="adALabel2" > Square footage </ion-label>
+    <ion-label class="adALabel2" > Površina </ion-label>
     <ion-input type="number" formControlName="Kvadratura"></ion-input>
     m2
   </ion-item>
 
   <ion-item>
-    <ion-label class="adALabel2"  > Price </ion-label>
+    <ion-label class="adALabel2"  > Cena </ion-label>
     <ion-input type="number" formControlName="Cena"></ion-input>
     €
   </ion-item>
 
 
       <ion-item  >   
-        <ion-checkbox   formControlName="CentralnoGrejanje" ></ion-checkbox><ion-label class="adALabel2" >     Central heating </ion-label>
+        <ion-checkbox   formControlName="CentralnoGrejanje" ></ion-checkbox><ion-label class="adALabel2" >    Centralno grejanje</ion-label>
     </ion-item>
 
       <ion-item >
-        <ion-checkbox  formControlName="ParkingMesto"></ion-checkbox><ion-label class="adALabel2" >    Parking place </ion-label>
+        <ion-checkbox  formControlName="ParkingMesto"></ion-checkbox><ion-label class="adALabel2" >    Parking mesto </ion-label>
          </ion-item>
   <ion-item >
-    <ion-checkbox  formControlName="Uknjizeno"></ion-checkbox><ion-label class="adALabel2" >    Registered </ion-label>
+    <ion-checkbox  formControlName="Uknjizeno"></ion-checkbox><ion-label class="adALabel2" >    Uknjiženo </ion-label>
   </ion-item>
 
   <ion-item >
@@ -54,7 +54,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label  position="stacked"  > Phone number </ion-label>
+    <ion-label  position="stacked"  > Broj telefona </ion-label>
     <ion-input  placeholder="06********" formControlName="BrojTelefona" type="text" required minlength="8"></ion-input>
   </ion-item>
   <ion-item>
@@ -66,16 +66,16 @@
   <ion-list>
     <ion-radio-group formControlName="TypeOfProperty" >
       <ion-list-header>
-        <ion-label>Type of property </ion-label>
+        <ion-label>Vrsta nekretnine</ion-label>
       </ion-list-header>
 
       <ion-item>
-        <ion-label>Apartment</ion-label>
+        <ion-label>Stan</ion-label>
         <ion-radio slot="start" value="Apartment"></ion-radio>
       </ion-item>
 
       <ion-item>
-        <ion-label>House</ion-label>
+        <ion-label>Kuća</ion-label>
         <ion-radio slot="start" value="House"></ion-radio>
       </ion-item>
 
@@ -89,11 +89,11 @@
     <ion-list>
       <ion-radio-group  formControlName="TypeOfSale">
         <ion-list-header>
-          <ion-label>Type of sell</ion-label>
+          <ion-label>Način izdavanja</ion-label>
         </ion-list-header>
   
         <ion-item>
-          <ion-label>Sale </ion-label>
+          <ion-label>Prodaja </ion-label>
           <ion-radio slot="start" value="Sale"></ion-radio>
         </ion-item>
   
@@ -117,20 +117,20 @@
     </ion-list>
   
     <ion-item>
-      <ion-label class="adALabel2"  > Number of floors </ion-label>
+      <ion-label class="adALabel2"  > Broj spratova </ion-label>
       <ion-input type="number" formControlName="BrojSpratova"></ion-input>
   
     </ion-item>
   
     <ion-item>
-      <ion-label class="adALabel2"  > Yard area </ion-label>
+      <ion-label class="adALabel2"  > Površina dvorišta </ion-label>
       <ion-input type="number" formControlName="PovrsinaDvorista" ></ion-input>
    m2
     </ion-item>
     <ion-item>
       <ion-icon name="images"></ion-icon>
    
-      <ion-label class="adALabel2" > Add photo </ion-label>
+      <ion-label class="adALabel2" > Ddoaj sliku </ion-label>
       <ion-input formControlName="UrlSlike" type="text"  required minlength="4">     
       </ion-input>
   
@@ -140,7 +140,7 @@
       <ion-textarea   formControlName="Opis"  type="text"  ></ion-textarea>
     </ion-item>
     
-    <ion-button  type="submit" color="primary" class="ion-button-class" shape="round" fill="solid"  expand="block" >Add new ad</ion-button>
+    <ion-button  type="submit" color="primary" class="ion-button-class" shape="round" fill="solid"  expand="block" >Dodaj oglas</ion-button>
     
   
 </form>

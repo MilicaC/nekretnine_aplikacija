@@ -23,45 +23,51 @@ export class HomePage implements OnInit {
     window.location.reload();
    } 
   ngOnInit() {
-      this.AdService.VratiSveNekretnine().subscribe(nekrentineData=>
-        {console.log(nekrentineData);
-        console.log('ucitano');
-       const nekretnine:Nekretnina[]=[];
-              
-      for(const key in nekrentineData){
-         if(nekrentineData.hasOwnProperty(key)){
-           nekretnine.push({
-            id:key,
-            Adresa:nekrentineData[key].Adresa,
-            Grad: nekrentineData[key].Grad,
-            Drzava: nekrentineData[key].Drzava,
-            GodinaGradnje: nekrentineData[key].GodinaGradnje,
-            Kvadratura: nekrentineData[key].Kvadratura,
-            Cena: nekrentineData[key].Cena,
-            BrojTelefona: nekrentineData[key].BrojTelefona,
-            Email: nekrentineData[key].Email,
-            BrojSpratova: nekrentineData[key].BrojSpratova,
-            PovrsinaDvorista: nekrentineData[key].PovrsinaDvorista,
-            UrlSlike: nekrentineData[key].UrlSlike,
-            TypeOfSale:nekrentineData[key].TypeOfSale,
-            TypeOfProperty:nekrentineData[key].TypeOfProperty,
-            CentralnoGrejanje:nekrentineData[key].CentralnoGrejanje,
-            ParkingMesto:nekrentineData[key].ParkingMesto,
-            Uknjizen:nekrentineData[key].Uknjizen,
-            NamestenStan:nekrentineData[key].NamestenStan,
-            Opis:nekrentineData[key].Opis
-            
-           });
-         }
- 
-
-      }
-      this.nekretnine=nekretnine;
-     
-      }
-     
-      );
+      
 
   }
+
+ionViewWillEnter(){
+  this.AdService.VratiSveNekretnine().subscribe(nekrentineData=>
+    {console.log(nekrentineData);
+    console.log('ucitano');
+   const nekretnine:Nekretnina[]=[];
+          
+  for(const key in nekrentineData){
+     if(nekrentineData.hasOwnProperty(key)){
+       nekretnine.push({
+        id:key,
+        Adresa:nekrentineData[key].Adresa,
+        Grad: nekrentineData[key].Grad,
+        Drzava: nekrentineData[key].Drzava,
+        GodinaGradnje: nekrentineData[key].GodinaGradnje,
+        Kvadratura: nekrentineData[key].Kvadratura,
+        Cena: nekrentineData[key].Cena,
+        BrojTelefona: nekrentineData[key].BrojTelefona,
+        Email: nekrentineData[key].Email,
+        BrojSpratova: nekrentineData[key].BrojSpratova,
+        PovrsinaDvorista: nekrentineData[key].PovrsinaDvorista,
+        UrlSlike: nekrentineData[key].UrlSlike,
+        TypeOfSale:nekrentineData[key].TypeOfSale,
+        TypeOfProperty:nekrentineData[key].TypeOfProperty,
+        CentralnoGrejanje:nekrentineData[key].CentralnoGrejanje,
+        ParkingMesto:nekrentineData[key].ParkingMesto,
+        Uknjizen:nekrentineData[key].Uknjizen,
+        NamestenStan:nekrentineData[key].NamestenStan,
+        Opis:nekrentineData[key].Opis,
+        UserID:nekrentineData[key].UserID //
+        
+       });
+     }
+
+
+  }
+  this.nekretnine=nekretnine;
+ 
+  }
+ 
+  );
+}
+
 
 }

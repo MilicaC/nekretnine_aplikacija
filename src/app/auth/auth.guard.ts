@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { take, map,tap, switchMap, catchError } from 'rxjs/operators';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -29,10 +30,14 @@ export class AuthGuard implements CanActivate, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if(!this.authService.isUserAuthenticates){
-      this.router.navigateByUrl('/log-in');
-    }
-    return this.authService.isUserAuthenticates;
+      return this.authService.isUserAuthenticates.pipe(
+        take(1),
+        tap(isAuthenticated =>{
+          if(!isAuthenticated){
+            this.router.navigateByUrl('/log-in');
+          }
+        })
+      );
+   
   }
 }

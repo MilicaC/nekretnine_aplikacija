@@ -67,7 +67,7 @@ export class RegisterPage implements OnInit {
         this.registerForm.reset();
       }
      else{
-       this.loadingCtrl.create({message: "Registering..."}).then((loadingEl:HTMLIonLoadingElement)=>{
+       this.loadingCtrl.create({message: "Registracija..."}).then((loadingEl:HTMLIonLoadingElement)=>{
      loadingEl.present();
         this.authService.addAuthor(this.registerForm.value).subscribe(resData=>{
           console.log('Registracija je uspela');

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {IonRouterOutlet, ModalController} from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {IonList, IonRouterOutlet, ModalController} from '@ionic/angular';
 import {ModalComponent} from './modal/modal.component';
 
 @Component({
@@ -8,6 +8,10 @@ import {ModalComponent} from './modal/modal.component';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
+  @ViewChild('lista') lista: IonList;
+
+
   // Simple Variables
   imageURL='assets/stan_plaza.jpg';
   estateName='Atraktivan stan kod Plaze';
@@ -61,4 +65,15 @@ export class ProfilePage implements OnInit {
 
     return await modal.present();
   }
+
+  delete(advertisement){
+    console.log(advertisement);
+    this.lista.closeSlidingItems();
+  }
+
+  update(advertisement){
+    console.log(advertisement);
+    this.lista.closeSlidingItems();
+  }
+
 }

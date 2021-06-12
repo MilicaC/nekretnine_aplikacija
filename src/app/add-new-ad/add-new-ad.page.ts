@@ -43,6 +43,7 @@ export class AddNewAdPage implements OnInit {
       TypeOfSale:new FormControl('House'),
       TypeOfProperty:new FormControl('Sale'),
       Opis:new FormControl(null),
+      UserID: new FormControl(null) //
 
     })
   }

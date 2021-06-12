@@ -18,6 +18,11 @@ export class AppComponent{
   }
 
   logout() {
-
+    this.authService.logOut();
+    this.router.navigateByUrl('/log-in');
   }
+
+
+
+  
 }

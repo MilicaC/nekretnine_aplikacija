@@ -9,7 +9,7 @@
 
       </ion-button>
     </ion-buttons>
-    <ion-title>Profile</ion-title>
+    <ion-title>Profil</ion-title>
     <ion-buttons slot="end">
       <ion-button class="notification">
         <ion-icon name="notification-outline" color="dark"></ion-icon>
@@ -23,6 +23,7 @@
 
 <ion-content>
   <h1 class="title">Nikola Golubović</h1>
+  <ion-label></ion-label>
 
   <div class="profile-info">
     <ion-item>
@@ -42,21 +43,31 @@
       <ion-input value="4.37"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">My advertisements</ion-label>
+      <ion-label position="floating">Moji oglasi</ion-label>
       <ion-input value=""></ion-input>
     </ion-item>
   </div>
 
-<ion-list inset="true" *ngFor="let advertisement of advertisementsList">
+<ion-list #lista>
+<ion-item-sliding *ngFor="let advertisement of advertisementsList">
+  <ion-item>
+    <ion-label>
+      <h3>{{advertisement.estateName}}</h3>
+     <p>
+       {{advertisement.estatePrice}}
+     </p>
+     </ion-label>
 
-  <ion-item href="/home/{{advertisement.id}}" detail>
-    <ion-thumbnail class="ion-margin-end">
-      <ion-img src="{{advertisement.imageURL}}"></ion-img>
-    </ion-thumbnail>
-    <ion-label class="ion-text-wrap">{{advertisement.estateName}}</ion-label>
-    <ion-label>{{advertisement.estatePrice}}</ion-label>
+    
+  
   </ion-item>
 
+  <ion-item-options side="start">
+    <ion-item-option (click)="update(advertisement)"><ion-icon slot="icon-only" name="create-outline"></ion-icon></ion-item-option>
+    <ion-item-option color="danger" (click)="delete(advertisement)"><ion-icon slot="icon-only" name="trash-outline"></ion-icon></ion-item-option>
+  </ion-item-options>
+
+</ion-item-sliding>
 
 </ion-list>
 <ion-button (click)="openModal()" expand="block" shape="round">My contacts</ion-button>
