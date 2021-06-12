@@ -40,8 +40,8 @@ export class AddNewAdPage implements OnInit {
       ParkingMesto:new FormControl(false),
       Uknjizeno:new FormControl(false),
       SredjenStan:new FormControl(false),
-      TypeOfSale:new FormControl('House'),
-      TypeOfProperty:new FormControl('Sale'),
+      TypeOfSale:new FormControl("Sale"),
+      TypeOfProperty:new FormControl("House"),
       Opis:new FormControl(null),
       UserID: new FormControl(null) //
 

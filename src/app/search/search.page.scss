@@ -21,3 +21,26 @@
 .my-custom-class {
   --background: #e5e5e5;
 }
+ion-toggle {
+  --background: #000;
+  --background-checked: #7a49a5;
+
+  --handle-background: #7a49a5;
+  --handle-background-checked: #000;
+}
+ion-toggle::before {
+  position: absolute;
+
+  top: 16px;
+  left: 10px;
+
+  content: "ON";
+
+  color: white;
+  font-size: 8px;
+
+  z-index: 1;
+}
+.my-custom-class {
+  --background: #222;
+}
