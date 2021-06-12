@@ -1,0 +1,106 @@
+<ion-header>
+  <div class="x">
+    <ion-button (click)=" ZatvoriModal()" slot="primary" >
+      <ion-icon name='close'> 
+
+      </ion-icon>
+      </ion-button>
+
+   
+    </div>
+  </ion-header>
+  <ion-content>
+
+    <form #filterForm="ngForm" (ngSubmit)="Pretrazi(filterForm)">
+
+    <ion-toolbar>
+      
+      <ion-item>
+        <ion-label class="adALabel1"  >
+          Izvrsi pretragu
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Raspon cene od:    
+        </ion-label>
+        <ion-input type='number' ngModel name="CenaOd"> </ion-input>
+        <ion-label> do   </ion-label>
+        <ion-input type='number' ngModel name="CenaDo"> </ion-input>
+        <ion-label>   €  </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          Raspon kvadrature od:    
+        </ion-label>
+        <ion-input type='number' ngModel name="KvadraturaOd" ></ion-input>
+        <ion-label> do   </ion-label>
+        <ion-input type='number' ngModel name="KvadraturaDo"> </ion-input>
+        <ion-label>    m2   </ion-label>
+      </ion-item>
+
+    
+      <ion-item>
+       <ion-toggle ngModel name="CentralnoGrejanje"></ion-toggle>
+       Centralno grejanje
+      </ion-item>  
+
+      <ion-item>
+      <ion-toggle ngModel name="ParkingMesto"></ion-toggle>
+      Parking mesto
+     </ion-item> 
+
+     <ion-item>
+     <ion-toggle ngModel name="Uknjizen"></ion-toggle>
+     Uknjizen
+    </ion-item>
+
+    <ion-item>
+    <ion-toggle ngModel name="Namesten"></ion-toggle>
+    Namesten
+   </ion-item>  
+   
+   <ion-item>
+     <ion-label>
+       Tip Smestaja
+     </ion-label>
+   </ion-item>
+
+   <ion-item> 
+     <ion-checkbox ngModel name="StanCheck">
+        </ion-checkbox>  Stan
+    
+        <ion-item>
+    
+       <ion-checkbox ngModel name="KucaCheck">
+          </ion-checkbox  > Kuca
+        </ion-item>
+        
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Tip prodaje
+          </ion-label>
+        </ion-item>
+
+   <ion-item> 
+     <ion-checkbox ngModel name="ProdajaCheck">
+        </ion-checkbox > Prodaja
+        
+          <ion-item> 
+        <ion-checkbox ngModel name="IznajmljivanjeNaMesecCheck">
+           </ion-checkbox > Iznajmljivanje na mesec
+         </ion-item>
+
+         <ion-item> 
+          <ion-checkbox ngModel name="IznajmljivanjeNaDanCheck">
+             </ion-checkbox > Iznajmljivanje na dan
+           </ion-item>
+
+  </ion-item>
+          <ion-button  type="submit" color="primary" fill="solid"  expand="block" >Pretrazi</ion-button>
+  </ion-toolbar>
+    </form>
+</ion-content>
