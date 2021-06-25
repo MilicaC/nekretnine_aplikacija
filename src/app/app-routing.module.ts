@@ -20,22 +20,23 @@ const routes: Routes = [
   {
     path: 'add-new-ad',
     loadChildren: () => import('./add-new-ad/add-new-ad.module').then( m => m.AddNewAdPageModule),
-   // canLoad:[AuthGuard]
+   canLoad:[AuthGuard]
   },
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
-   // canLoad:[AuthGuard]
+    canLoad:[AuthGuard]
   },
   {
     path: 'saved-ad',
     loadChildren: () => import('./saved-ad/saved-ad.module').then( m => m.SavedAdPageModule),
-  //  canLoad:[AuthGuard]
+    canLoad:[AuthGuard]
   },
   {
     path: 'apartment-ad',
     loadChildren: () => import('./apartment-ad/apartment-ad.module').then( m => m.ApartmentAdPageModule)
   },
+ 
  
   {
     path: 'log-in',

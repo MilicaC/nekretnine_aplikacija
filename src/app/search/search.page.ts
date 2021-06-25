@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { AddNewAdService, Nekretnina } from '../add-new-ad/add-new-ad.service';
+import { AddNewAdService} from '../add-new-ad/add-new-ad.service';
 import { ModalController } from '@ionic/angular';
 
 import { FilterModalComponent } from './filter-modal/filter-modal.component';
+import { Nekretnina } from '../add-new-ad/add-new-ad.model';
 
 
 @Component({
@@ -62,7 +63,7 @@ export class SearchPage implements OnInit {
               Uknjizen:nekrentineData[key].Uknjizen,
               NamestenStan:nekrentineData[key].NamestenStan,
               Opis:nekrentineData[key].Opis,
-              UserID:nekrentineData[key].UserID
+              userId:nekrentineData[key].userId
              });
            }
    
@@ -154,7 +155,7 @@ export class SearchPage implements OnInit {
               Uknjizen:nekrentineData[key].Uknjizen,
               NamestenStan:nekrentineData[key].NamestenStan,
               Opis:nekrentineData[key].Opis,
-              UserID:nekrentineData[key].UserID
+              userId:nekrentineData[key].userId
              });
            }
          
@@ -204,13 +205,14 @@ export class SearchPage implements OnInit {
 
   }
 
-
+// dovlacenje podataka sa firebase pri inicijaliyaciji stranice
   ngOnInit() {
-    this.AdService.VratiSveNekretnine().subscribe(nekrentineData=>
+    // ovde je bilo vratisve nekretnine umesto mekretnine
+    this.AdService.nekretnine.subscribe(nekrentineData=>
       {
   
             
-    for(const key in nekrentineData){
+  /*  for(const key in nekrentineData){
        if(nekrentineData.hasOwnProperty(key)){
          this.nek.push({
           id:key,
@@ -238,9 +240,10 @@ export class SearchPage implements OnInit {
        }
 
 
-    }
+    }*/
    
-      this.nekPom=this.nek;
+     // this.nekPom=this.nek;
+     this.nek = nekrentineData;
     }
     
     );

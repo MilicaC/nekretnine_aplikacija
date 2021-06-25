@@ -30,6 +30,7 @@ export class FilterModalComponent implements OnInit {
   }
   Pretrazi(form: NgForm){
     this.modalCtrl.dismiss(form.value,'confirm');
+    console.log(form.value);
   }
 }
 

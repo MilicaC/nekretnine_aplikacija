@@ -11,7 +11,7 @@ kind: string;
 idToken: string;
 email: string;
 refreshToken:string;
-locald: string;
+localId: string;
 expiresIn: string;
 registered?: boolean;
 
@@ -89,7 +89,7 @@ export class AuthService {
     .pipe(
       tap((UserData: AuthResponseData)=>{
         const expirationTime = new Date(new Date().getTime() + +UserData.expiresIn * 1000);
-        const user = new User(UserData.locald, UserData.email, UserData.idToken, expirationTime);
+        const user = new User(UserData.localId, UserData.email, UserData.idToken, expirationTime);
         this._user.next(user);
       })
       
@@ -112,7 +112,7 @@ export class AuthService {
       .pipe(
         tap((UserData: AuthResponseData)=>{
           const expirationTime = new Date(new Date().getTime() + +UserData.expiresIn * 1000);
-          const user = new User(UserData.locald, UserData.email, UserData.idToken, expirationTime);
+          const user = new User(UserData.localId, UserData.email, UserData.idToken, expirationTime);
           this._user.next(user);
         })
         
@@ -123,7 +123,7 @@ export class AuthService {
   }
 
   logOut() {
-    this._user.next(null);
+    this._user.next(null); 
   }
 
 

@@ -27,12 +27,12 @@
 
   
 <ion-list #lista>
-<ion-item-sliding *ngFor="let advertisement of advertisementsList">
+<ion-item-sliding *ngFor="let Nekretnina of nek " [nekretnine]="Nekretnina">
   <ion-item>
     <ion-label>
-      <h3>{{advertisement.estateName}}</h3>
+      <h3>{{Nekretnina.Adresa}}</h3>
      <p>
-       {{advertisement.estatePrice}}
+       {{Nekretnina.Cena}} €
      </p>
      </ion-label>
 
@@ -41,8 +41,8 @@
   </ion-item>
 
   <ion-item-options side="start">
-    <ion-item-option (click)="update(advertisement)"><ion-icon slot="icon-only" name="create-outline"></ion-icon></ion-item-option>
-    <ion-item-option color="danger" (click)="delete(advertisement)"><ion-icon slot="icon-only" name="trash-outline"></ion-icon></ion-item-option>
+    <ion-item-option (click)="otvoriModal(Nekretnina)"><ion-icon slot="icon-only" name="create-outline"></ion-icon></ion-item-option>
+    <ion-item-option color="danger" (click)="onDeleteNekr(Nekretnina.id)"><ion-icon slot="icon-only" name="trash-outline"></ion-icon></ion-item-option>
   </ion-item-options>
 
 </ion-item-sliding>

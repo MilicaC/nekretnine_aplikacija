@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { Router} from '@angular/router';
-import { AddNewAdService, Nekretnina } from './add-new-ad.service';
+import { AddNewAdService } from './add-new-ad.service';
 import { ToastController} from '@ionic/angular'
+import { Nekretnina } from './add-new-ad.model';
 
 
 
@@ -43,7 +44,7 @@ export class AddNewAdPage implements OnInit {
       TypeOfSale:new FormControl("Sale"),
       TypeOfProperty:new FormControl("House"),
       Opis:new FormControl(null),
-      UserID: new FormControl(null) //
+      userId: new FormControl(null) //
 
     })
   }

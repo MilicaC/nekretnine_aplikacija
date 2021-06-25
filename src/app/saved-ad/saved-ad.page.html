@@ -12,4 +12,24 @@
 
 <ion-content>
 
+  <ion-content>
+    <ion-list  *ngFor=" let Nekretnina of nek2 " [nekretnine]="Nekretnina">
+  
+      <ion-item >
+        <ion-thumbnail class="ion-margin-end">
+          
+          <ion-img src="{{Nekretnina.UrlSlike}}"></ion-img>
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap"  ><div class="adrGrad">{{Nekretnina.Adresa}},{{Nekretnina.Grad}}</div> </ion-label>
+        <ion-label> <div class="adrGrad">    {{Nekretnina.Cena}} € </div></ion-label>
+        <ion-item href="/home/{{Nekretnina.id}}" detail></ion-item>
+      </ion-item>
+    
+    
+    </ion-list>
+    
+    
+  
+  </ion-content>
+
 </ion-content>

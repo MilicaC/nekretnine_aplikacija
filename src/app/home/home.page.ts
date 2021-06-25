@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AddNewAdService, Nekretnina } from '../add-new-ad/add-new-ad.service';
+import { Nekretnina, Nekretnina2 } from '../add-new-ad/add-new-ad.model';
+import { AddNewAdService} from '../add-new-ad/add-new-ad.service';
 
 
 
@@ -14,7 +15,7 @@ import { AddNewAdService, Nekretnina } from '../add-new-ad/add-new-ad.service';
 })
 export class HomePage implements OnInit {
   nekretnine:Nekretnina[]
-
+  nekretnine2:Nekretnina2[]
 
 
   constructor(private AdService: AddNewAdService,private http: HttpClient) { }
@@ -26,7 +27,7 @@ export class HomePage implements OnInit {
       
 
   }
-
+// i ovuda je nesto cackala u 5.6
 ionViewWillEnter(){
   this.AdService.VratiSveNekretnine().subscribe(nekrentineData=>
     {console.log(nekrentineData);
@@ -55,7 +56,7 @@ ionViewWillEnter(){
         Uknjizen:nekrentineData[key].Uknjizen,
         NamestenStan:nekrentineData[key].NamestenStan,
         Opis:nekrentineData[key].Opis,
-        UserID:nekrentineData[key].UserID //
+        userId:nekrentineData[key].userId //
         
        });
      }
@@ -66,7 +67,7 @@ ionViewWillEnter(){
  
   }
  
-  );
+ );
 }
 
 

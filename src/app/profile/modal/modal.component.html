@@ -1,18 +1,31 @@
-<ion-header>
+<header>
   <ion-toolbar>
-    <ion-title>Recent contacts</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="_dismiss()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
+    <ion-title>{{adresa}}</ion-title>
+    <ion-buttons slot ="end">
+      <ion-button (click)="dismissModal()">Zatvori</ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</header>
+  <ion-content class="ion-padding">
+    <form #forma="ngForm">
+    <ion-item>
+      <ion-label position="stacked"> Cena:{{cena}}  </ion-label>
+    <ion-input placeholder="Unesi cenu" type="number" ngModel name ="cena"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label  position="stacked"  > Broj telefona:{{brojtelefona}} </ion-label>
+      <ion-input  placeholder="06********"type="text" required minlength="8" ngModel name ="brojtelefona"></ion-input>
+    </ion-item>
+    <ion-item>
+      
+      <ion-label  position="stacked" > E-mail:{{email}} </ion-label>
+      <ion-input placeholder="*********@*****.com"required email required minlength="2" ngModel name ="email"></ion-input>
+    </ion-item>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Please{{type}} to out channel {{name}}</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-</ion-content>
+
+      
+    <ion-button expand="block" (click)="onDeposit()" class="ion-margin-top">Izmeni</ion-button>
+
+  </form>
+  </ion-content>
