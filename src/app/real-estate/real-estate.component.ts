@@ -84,4 +84,12 @@ export class RealEstateComponent implements OnInit {
  
   }
 
+  sacuvajBtn(nekretnine){
+     
+      
+  
+  }
+
+
+
 }

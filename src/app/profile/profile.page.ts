@@ -65,70 +65,30 @@ export class ProfilePage implements OnInit {
     return this._nek.asObservable();
   }
 
+/*
+userEmail.subscribe(onNext: { userEmail in
+    // Do something with `userEmail`.
+
+*/
+
 
   ngOnInit() {
-      this.AdService.nekretnine.subscribe(nekretnineData=>
-      {
-        this.nek = nekretnineData;
-      }
       
-      );
-   /*   this.route.paramMap.subscribe(paramMap => {
-        if (!paramMap.has('quoteId')) {
-          // ako koristimo router, nece biti dobra back animacija,
-          // iako svakako i on koristi angular router, samo podesava da se vidi dobra animacija
-          this.navCtrl.navigateBack('/home');
-          return;
-        }
-  
-        this.isLoading = true;
-  
-        this.adService
-          .getNekretnina(paramMap.get('quoteId'))
-          .subscribe((nekretnina) => {
-            this.nekretnina= this.nekretnina;
-            this.isLoading = false;
-          });
-      });
-*/
-   
-  
- 
-
-
+    this.AdService.nekretninePrave.subscribe(podaci=>
+      {
+            this.nek = podaci;
+      }
+       );
   
 
+  
   }
 
 
 
 
- /* openModal() {
-    this.modalCtrl
-      .create({
-        component: ModalComponent,
-        componentProps: {title: 'Add quote'}
-      })
-      .then((modal) => {
-        modal.present();
-        return modal.onDidDismiss();
-      }).then((resultData) => {
-      if (resultData.role === 'confirm') {
-        console.log(resultData);
+ 
 
-        //let {author, text} = resultData.data.quoteData;
-
-        this.addService.addQuote(resultData.data.quoteData.author, resultData.data.quoteData.text).subscribe((quotes) => {
-          // this.quotes = quotes;
-        });@Input() adresa: string;
-  @Input() cena: number;
-  @Input() godinagradnje: number;
-  @Input() brojtelefona: string;
-  @Input() email:string;
-  @Input() sifra:string;
-      }
-    });
-  }*/
 
    otvoriModal(nekret: Nekretnina){
     this.modalCtrl

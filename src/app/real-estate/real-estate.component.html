@@ -5,18 +5,17 @@
       <ion-card-subtitle>{{nekretnine.Adresa}}</ion-card-subtitle>
       <ion-card-title>{{nekretnine.Grad}}</ion-card-title>
       <form #saveForm="ngForm">
-      <ion-item>
-        <ion-toggle ng-checked="true"  ngModel name="Sacuvano" (ionChange) = "naPromenu(saveForm, nekretnine)"></ion-toggle>
-        Sačuvaj
-       </ion-item> 
+      
+        <!-- <ion-toggle ng-checked="true"  ngModel name="Sacuvano" (ionChange) = "naPromenu(saveForm, nekretnine)"></ion-toggle>
+        Sačuvaj -->
+        <ion-button (onClick)="sacuvajBtn(nekretnine)" shape="round"><ion-icon name="bookmark-outline"></ion-icon>
 
-       <ion-item lines="none" *ngIf="Sacuvano">
-          <h1>treba sacuvati</h1>
-      </ion-item>
-       
-      <ion-item lines="none" *ngIf="!Sacuvano">
-        <h1>ne treba sacuvati</h1>
-    </ion-item>
+
+        </ion-button>
+
+      
+
+     
       </form>
       
 

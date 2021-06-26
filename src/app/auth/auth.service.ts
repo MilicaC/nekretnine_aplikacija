@@ -41,7 +41,7 @@ export class AuthService {
  /* async signup(email: string, password: string) {
 
   }*/
-  get isUserAuthenticates(){
+  get isUserAuthenticated(){
     // eslint-disable-next-line no-underscore-dangle
     return this._user.asObservable().pipe(
       map((user:User)=>{
@@ -58,7 +58,7 @@ export class AuthService {
     return this._user.asObservable().pipe(
       map((user:User)=>{
         if(user){
-          return user.id;
+          return user.token;
         }else{
           return null;
         }

@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -49,6 +50,7 @@ private _nek = new BehaviorSubject<Nekretnina[]>([]);
 private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
 
 
+
   VratiSveNekretnine() {
    
     return  this.http.get<{[key: string]:NekretninaData}>(`https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/add-new-ad.json`)
@@ -97,12 +99,66 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
   constructor(private http:HttpClient, private authService: AuthService) { }
 
   get nekretnine() {
-    return this._nek.asObservable();
+     return this._nek.asObservable();
+  }
+
+  get nekretninePrave(){
+    let fetchedUserId:string;
+
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap((userId) => {
+        fetchedUserId = userId;
+        return this.http
+          .get<{ [key: string]: NekretninaData }>(
+            `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/add-new-ad.json?auth=${userId}`
+          );
+      }),
+      map((nekrentineData: any) => {
+        const nekretninee: Nekretnina[] = [];
+        for (const key in nekrentineData ) {
+          if (nekrentineData.hasOwnProperty(key)  && (fetchedUserId === nekrentineData[key].userId )) {
+            //ovde je bila greska jer je na mesto imgUrl setovan userId
+            nekretninee.push(new Nekretnina(key,
+              nekrentineData[key].Adresa,
+              nekrentineData[key].Grad,
+              nekrentineData[key].Drzava,
+              nekrentineData[key].GodinaGradnje,
+              nekrentineData[key].Kvadratura,
+               nekrentineData[key].Cena,
+              nekrentineData[key].BrojTelefona,
+              nekrentineData[key].Email,
+              nekrentineData[key].BrojSpratova,
+              nekrentineData[key].PovrsinaDvorista,
+              nekrentineData[key].UrlSlike,
+              nekrentineData[key].TypeOfSale,
+              nekrentineData[key].TypeOfProperty,
+              nekrentineData[key].CentralnoGrejanje,
+              nekrentineData[key].ParkingMesto,
+              nekrentineData[key].Uknjizen,
+              nekrentineData[key].NamestenStan,
+              nekrentineData[key].Opis,
+              nekrentineData[key].userId)
+            );
+          }
+        }
+        console.log(fetchedUserId);
+        console.log(nekretninee);
+
+        return nekretninee;
+      }),
+      tap(nekretnine => {
+        this._nek.next(nekretnine);
+      })
+    );
   }
 
 get nekretnine2(){
   return this._nek2.asObservable();
 }
+
+
+
   
   AddNewAd(nek: Nekretnina)
      {
@@ -110,16 +166,18 @@ get nekretnine2(){
   
   let generatedId;
   let novaNekr: Nekretnina;
+  let fetchedUserId: string;
 
   return this.authService.userId.pipe(
     take(1),
     switchMap(userId => {
+      fetchedUserId = userId;
       console.log(userId);
       novaNekr = new Nekretnina(
         null, nek.Adresa, nek.Grad, nek.Drzava, nek.GodinaGradnje,
             nek.Kvadratura, nek.Cena, nek.BrojTelefona, nek.Email, nek.BrojSpratova, nek.PovrsinaDvorista, nek.UrlSlike,
             nek.TypeOfSale,nek.TypeOfProperty, nek.CentralnoGrejanje,nek.ParkingMesto,nek.Uknjizen,
-            nek.NamestenStan, nek.Opis, nek.userId
+            nek.NamestenStan, nek.Opis, fetchedUserId
             //mozda je ovde bila greska sve vreme sto nisam imala nek.
       );
       console.log(novaNekr);
@@ -181,14 +239,7 @@ get nekretnine2(){
         );
       }
 
-/*
-constructor(public id: string, public Adresa: string, public Grad: string, public Drzava:string,
-      public GodinaGradnje: number,public Kvadratura: number, public Cena:number, 
-      public BrojTelefona: string, public Email:string, public BrojSpratova: number,
-      public PovrsinaDvorista:number, public UrlSlike:string,public TypeOfSale: string,public TypeOfProperty: string,
-      public CentralnoGrejanje:string, public ParkingMesto:boolean, public Uknjizen:boolean,
-      public NamestenStan:boolean, public Opis: string, public userId: string){}
-*/
+
 
       editNekretnina(
         id: string,
@@ -237,7 +288,6 @@ constructor(public id: string, public Adresa: string, public Grad: string, publi
 
 
 dodajUSacuvane(idUsera:string){
-   // ovaj kod ispod je nikolin za addNewAd
   let generatedId;
   let novaNekr2: Nekretnina2;
 
