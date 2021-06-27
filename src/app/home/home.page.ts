@@ -70,5 +70,12 @@ ionViewWillEnter(){
  );
 }
 
+sacuvajBtn(nekret: Nekretnina){
+  console.log(nekret);
+  console.log("nkjdsd");
+   
+
+}
+
 
 }

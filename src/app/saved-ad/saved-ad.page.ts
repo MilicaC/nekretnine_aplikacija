@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Nekretnina, Nekretnina2 } from '../add-new-ad/add-new-ad.model';
 import { AddNewAdService } from '../add-new-ad/add-new-ad.service';
 
@@ -9,22 +10,31 @@ import { AddNewAdService } from '../add-new-ad/add-new-ad.service';
 })
 export class SavedAdPage implements OnInit {
 
-  nek:Nekretnina2[]=[];
+  nek:Nekretnina[]=[];
   nekPom:Nekretnina[]=[];
   nek2:Nekretnina[]=[];
+
+  nekretnine4: Nekretnina[];
+  private nekSub2: Subscription;
 
 
   constructor(private AdService: AddNewAdService) { }
 
-  ngOnInit() {
-    this.AdService.nekretnine2.subscribe(nekrentineData=>
+ngOnInit(){}
+
+  ionViewWillEnter(){
+  
+
+  this.nekSub2 = this.AdService.nekretninePrave2.subscribe((nekretninePrave)=>
       {
-        
-        this.nek = nekrentineData;
+            this.nekretnine4 = nekretninePrave;
       }
-    );
+       );
 
 
-  }
+  // }
 
 }
+
+}
+

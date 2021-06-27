@@ -1,22 +1,38 @@
- <ion-card (click)="otvoriModalZaDetalje(nekretnine)">
+ <ion-card >
     <ion-card-header >
 
 
-      <ion-card-subtitle>{{nekretnine.Adresa}}</ion-card-subtitle>
+      <ion-card-subtitle (click)="otvoriModalZaDetalje(nekretnine)">{{nekretnine.Adresa}}</ion-card-subtitle>
       <ion-card-title>{{nekretnine.Grad}}</ion-card-title>
-      <form #saveForm="ngForm">
+      <!-- <form #saveForm="ngForm"> -->
       
         <!-- <ion-toggle ng-checked="true"  ngModel name="Sacuvano" (ionChange) = "naPromenu(saveForm, nekretnine)"></ion-toggle>
         Sačuvaj -->
-        <ion-button (onClick)="sacuvajBtn(nekretnine)" shape="round"><ion-icon name="bookmark-outline"></ion-icon>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="sacuvajBtn(nekretnine)" shape="round"><ion-icon name="bookmark-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+            
+            <ion-col>
+              
+              <ion-button (click)="izbaciBtn(nekretnine)" shape="round"><ion-icon name="bookmark"></ion-icon>
+              
+              </ion-button>
+            
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+       
 
-
-        </ion-button>
-
+        
+      
       
 
      
-      </form>
+      <!-- </form> -->
       
 
 

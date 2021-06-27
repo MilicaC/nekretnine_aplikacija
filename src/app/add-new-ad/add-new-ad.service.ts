@@ -44,6 +44,9 @@ export class AddNewAdService {
 
 
 
+  
+
+
 
 
 private _nek = new BehaviorSubject<Nekretnina[]>([]);
@@ -102,22 +105,81 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
      return this._nek.asObservable();
   }
 
-  get nekretninePrave(){
-    let fetchedUserId:string;
+ izbaciIzSacuvanih(nek: Nekretnina){
+   console.log("Uslo u izbaci iz sacuvanih");
+  return this.authService.userId.pipe(
+    take(1),
+    switchMap((userId) => {
+      return this.http.delete(
+        `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad/${nek.id}`
+      );
+    }),
+    switchMap(() => {
+      return this.nekretnine;
+    }),
+    take(1),
+    tap((nekretnine) => {
+      this._nek.next(nekretnine.filter((q) => q.id !== nek.id));
+    })
+  );
+ }
 
+
+  sacuvajMojuNekretninu(nek: Nekretnina) {
+    console.log("ulazi u metodu");
+    console.log(nek);
+    let generatedId;
+  let novaNekr: Nekretnina;
+  let fetchedUserId: string;
+  console.log("ispred prvog return-a");
+  return this.authService.userId.pipe(
+    take(1),
+    switchMap(userId => {
+      fetchedUserId = userId;
+      console.log(userId);
+      novaNekr = new Nekretnina(
+        null, nek.Adresa, nek.Grad, nek.Drzava, nek.GodinaGradnje,
+            nek.Kvadratura, nek.Cena, nek.BrojTelefona, nek.Email, nek.BrojSpratova, nek.PovrsinaDvorista, nek.UrlSlike,
+            nek.TypeOfSale,nek.TypeOfProperty, nek.CentralnoGrejanje,nek.ParkingMesto,nek.Uknjizen,
+            nek.NamestenStan, nek.Opis, fetchedUserId
+            //mozda je ovde bila greska sve vreme sto nisam imala nek.
+      );
+      console.log(novaNekr);
+      return this.http.post<{ name: string }>(
+        `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad.json`, novaNekr);
+    }),
+    take(1),
+    switchMap((resData) => {
+      generatedId = resData.name;
+      return this.nekretnine;
+    }),
+    take(1),
+    tap((nekretnine) => {
+      novaNekr.id = generatedId;
+      this._nek.next(nekretnine.concat(novaNekr));
+    })
+  );
+
+
+
+}
+
+
+  get nekretninePrave(){
+    let fetchedUserId: string;
     return this.authService.userId.pipe(
       take(1),
       switchMap((userId) => {
-        fetchedUserId = userId;
+         fetchedUserId = userId;
         return this.http
           .get<{ [key: string]: NekretninaData }>(
-            `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/add-new-ad.json?auth=${userId}`
+            `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/add-new-ad.json`
           );
       }),
       map((nekrentineData: any) => {
         const nekretninee: Nekretnina[] = [];
         for (const key in nekrentineData ) {
-          if (nekrentineData.hasOwnProperty(key)  && (fetchedUserId === nekrentineData[key].userId )) {
+          if (nekrentineData.hasOwnProperty(key) && (nekrentineData[key].userId === fetchedUserId) ) {
             //ovde je bila greska jer je na mesto imgUrl setovan userId
             nekretninee.push(new Nekretnina(key,
               nekrentineData[key].Adresa,
@@ -142,16 +204,70 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
             );
           }
         }
-        console.log(fetchedUserId);
+        
         console.log(nekretninee);
 
         return nekretninee;
       }),
-      tap(nekretnine => {
-        this._nek.next(nekretnine);
+      tap(nekretninee => {
+        this._nek.next(nekretninee);
       })
     );
   }
+
+
+  get nekretninePrave2(){
+    let fetchedUserId: string;
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap((userId) => {
+         fetchedUserId = userId;
+        return this.http
+          .get<{ [key: string]: NekretninaData }>(
+            `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad.json`
+          );
+      }),
+      map((nekrentineData: any) => {
+        const nekretninee: Nekretnina[] = [];
+        for (const key in nekrentineData ) {
+          if (nekrentineData.hasOwnProperty(key) && (nekrentineData[key].userId === fetchedUserId) ) {
+            //ovde je bila greska jer je na mesto imgUrl setovan userId
+            nekretninee.push(new Nekretnina(key,
+              nekrentineData[key].Adresa,
+              nekrentineData[key].Grad,
+              nekrentineData[key].Drzava,
+              nekrentineData[key].GodinaGradnje,
+              nekrentineData[key].Kvadratura,
+               nekrentineData[key].Cena,
+              nekrentineData[key].BrojTelefona,
+              nekrentineData[key].Email,
+              nekrentineData[key].BrojSpratova,
+              nekrentineData[key].PovrsinaDvorista,
+              nekrentineData[key].UrlSlike,
+              nekrentineData[key].TypeOfSale,
+              nekrentineData[key].TypeOfProperty,
+              nekrentineData[key].CentralnoGrejanje,
+              nekrentineData[key].ParkingMesto,
+              nekrentineData[key].Uknjizen,
+              nekrentineData[key].NamestenStan,
+              nekrentineData[key].Opis,
+              nekrentineData[key].userId)
+            );
+          }
+        }
+        
+        console.log(nekretninee);
+
+        return nekretninee;
+      }),
+      tap(nekretninee => {
+        this._nek.next(nekretninee);
+      })
+    );
+  }
+
+
+
 
 get nekretnine2(){
   return this._nek2.asObservable();

@@ -18,7 +18,7 @@ import { RealEstateModalComponent } from './real-estate-modal/real-estate-modal.
 })
 export class RealEstateComponent implements OnInit {
 
-
+ 
   
   @Input() nekretnine: Nekretnina =  {Adresa:"adresa",Cena:20000,UrlSlike:'https://www.mentorrent.rs/sr/wp-content/uploads/2020/06/Dedinje-house-with-swimming-pool-for-rent-10.jpg' ,
                               Opis:'111', id:'',Grad: 'string',Drzava: 'string',GodinaGradnje: 1,Kvadratura: 1,BrojTelefona: 'string',
@@ -31,7 +31,6 @@ export class RealEstateComponent implements OnInit {
   ngOnInit() {
     
   }
-
 
   sacuvaj(nekretnine:Nekretnina){
 
@@ -84,11 +83,26 @@ export class RealEstateComponent implements OnInit {
  
   }
 
-  sacuvajBtn(nekretnine){
-     
-      
-  
+  sacuvajBtn(nek: Nekretnina){
+    this.adService.sacuvajMojuNekretninu(nek).subscribe(resData=>{
+      console.log("uspesno uneto");
+      console.log(resData);
+    })
+    
   }
+
+  izbaciBtn(nek: Nekretnina){
+    this.adService.izbaciIzSacuvanih(nek).subscribe(() => {
+      console.log("uspesno izbrisano");
+      //console.log(resData);
+    })
+  }
+
+
+  // this.AdService.AddNewAd(this.AddREForm.value).subscribe(resData=>
+  //   {console.log("Uspesno uneto");
+  // console.log(resData);
+  // this.router.navigateByUrl('/home');
 
 
 

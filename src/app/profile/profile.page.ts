@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {IonList, IonRouterOutlet, LoadingController, ModalController, NavController} from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import {switchMap, take, tap} from 'rxjs/operators';
 import { Nekretnina, Nekretnina2 } from '../add-new-ad/add-new-ad.model';
 import { AddNewAdService } from '../add-new-ad/add-new-ad.service';
 import { AuthService } from '../auth/auth.service';
 import {ModalComponent} from './modal/modal.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { User } from '../auth/user.model';
 
 
 
@@ -17,6 +18,12 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
+  imeprezime:string;
+
+
+  
+
 
   private _nek = new BehaviorSubject<Nekretnina[]>([]);
   nekretnina: Nekretnina;
@@ -59,6 +66,11 @@ export class ProfilePage implements OnInit {
   ];
   fromModal: any;
 
+  nekretnine3: Nekretnina[];
+  private nekSub: Subscription;
+  korisnik:User;
+
+
   constructor(private route: ActivatedRoute,private navCtrl: NavController,private adService:AddNewAdService,private loadingCtrl: LoadingController,private http: HttpClient,private authService: AuthService, private AdService: AddNewAdService, private modalCtrl: ModalController, private routerOutlet: IonRouterOutlet) { }
 
   get nekretnine() {
@@ -71,15 +83,18 @@ userEmail.subscribe(onNext: { userEmail in
 
 */
 
-
   ngOnInit() {
       
-    this.AdService.nekretninePrave.subscribe(podaci=>
+    this.nekSub = this.AdService.nekretninePrave.subscribe((nekretninePrave)=>
       {
-            this.nek = podaci;
+            this.nekretnine3 = nekretninePrave;
       }
        );
   
+      //  this.quoteSub = this.quotesService.quotes.subscribe((quotes) => {
+      //   this.quotes = quotes;
+      // });
+
 
   
   }
@@ -140,7 +155,13 @@ userEmail.subscribe(onNext: { userEmail in
   }
 
 
-
+vratiUsera(){
+  this.authService.vratiUsera.subscribe((korisnici)=>
+  {
+        this.korisnik = korisnici;
+        this.imeprezime = this.korisnik.email;
+  });
+}
 
 
  
@@ -157,39 +178,6 @@ userEmail.subscribe(onNext: { userEmail in
 
 
   
- /* onEdit(){
-     this.modalCtrl
-      .create({
-        component: ModalComponent,
-        componentProps: {title: 'Edit quote', cena: this.nekretnina.Cena},
-      })
-      .then((modal) => {
-        modal.present();
-        return modal.onDidDismiss();
-      })
-      .then((resultData) => {
-        if (resultData.role === 'confirm') {
-          this.loadingCtrl
-            .create({message: 'Editing...'})
-            .then((loadingEl) => {
-              loadingEl.present();
-              this.adService
-                .editNekretnina(
-                  this.nekretnina.id,
-                  resultData.data.nekretnineData.cena,
-                /*  resultData.data.quoteData.text,
-                  this.nekretnina.imageUrl,
-                  this.nekretnina.userId*/
-             /*   )
-                .subscribe((nekretnine) => {
-                  this.nekretnina.Cena = resultData.data.nekretnineData.Cena;
-              //    this.nekretnina.author = resultData.data.quoteData.author;
-                  loadingEl.dismiss();
-                });
-            });
-        }
-      });
-  }*/
 
   }
 
