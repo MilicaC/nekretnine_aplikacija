@@ -41,6 +41,7 @@ interface NekretninaData {
   providedIn: 'root'
 })
 export class AddNewAdService {
+  
 
 
 
@@ -163,6 +164,26 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
 
 
 }
+
+deleteNekrS(nek: Nekretnina) {
+  return this.authService.token.pipe(
+    take(1),
+    switchMap((token) => {
+      return this.http.delete(
+        `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad/${nek.id}.json?auth=${token}`
+      );
+    }),
+    switchMap(() => {
+      return this.nekretnine;
+    }),
+    take(1),
+    tap((nekretnine) => {
+      this._nek.next(nekretnine.filter((q) => q.id !== nek.id));
+    })
+  );
+}
+
+
 
 
   get nekretninePrave(){
@@ -433,6 +454,48 @@ dodajUSacuvane(idUsera:string){
 
 }
 
+
+vratiSveNekretnine2(){
+  return  this.http.get<{[key: string]:NekretninaData}>(`https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad.json`)
+    
+       .pipe(
+      map((NekretninasData) => {
+        const nekA: Nekretnina[] = [];
+        for(const key in NekretninasData){
+          if(NekretninasData.hasOwnProperty(key)){
+               nekA.push(new Nekretnina(key,
+             NekretninasData[key].Adresa,
+             NekretninasData[key].Grad,
+             NekretninasData[key].Drzava,
+             NekretninasData[key].GodinaGradnje,
+             NekretninasData[key].Kvadratura,
+             NekretninasData[key].Cena,
+             NekretninasData[key].BrojTelefona,
+              NekretninasData[key].Email,
+              NekretninasData[key].BrojSpratova,
+             NekretninasData[key].PovrsinaDvorista,
+              NekretninasData[key].UrlSlike,
+             NekretninasData[key].TypeOfSale,
+             NekretninasData[key].TypeOfProperty,
+             NekretninasData[key].CentralnoGrejanje,
+             NekretninasData[key].ParkingMesto,
+             NekretninasData[key].Uknjizen,
+             NekretninasData[key].NamestenStan,
+             NekretninasData[key].Opis,
+             NekretninasData[key].userId));
+             
+            //});
+          }
+        }
+        return nekA;
+      }),
+      tap(nekA => {
+        this._nek.next(nekA);
+      })
+    );
+
+
+}
     
 
     }

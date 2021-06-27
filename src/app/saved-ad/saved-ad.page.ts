@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Nekretnina, Nekretnina2 } from '../add-new-ad/add-new-ad.model';
 import { AddNewAdService } from '../add-new-ad/add-new-ad.service';
@@ -18,7 +20,7 @@ export class SavedAdPage implements OnInit {
   private nekSub2: Subscription;
 
 
-  constructor(private AdService: AddNewAdService) { }
+  constructor(private AdService: AddNewAdService, private router: Router, private nav: NavController) { }
 
 ngOnInit(){}
 
@@ -35,6 +37,22 @@ ngOnInit(){}
   // }
 
 }
+
+izbrisiNekS(nek: Nekretnina){
+  //this.loadingCtrl.create({message: 'Deleting...'}).then(loadingEl => {
+    //loadingEl.present();
+    this.AdService.deleteNekrS(nek).subscribe(() => {
+      //ovde ne prepoznaje id !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     // loadingEl.dismiss();
+      this.router.navigateByUrl('/home');
+    });
+ // });
+}
+
+
+
+
+
 
 }
 

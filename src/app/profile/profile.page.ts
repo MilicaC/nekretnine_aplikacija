@@ -7,7 +7,7 @@ import { Nekretnina, Nekretnina2 } from '../add-new-ad/add-new-ad.model';
 import { AddNewAdService } from '../add-new-ad/add-new-ad.service';
 import { AuthService } from '../auth/auth.service';
 import {ModalComponent} from './modal/modal.component';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { User } from '../auth/user.model';
 
 
@@ -71,7 +71,7 @@ export class ProfilePage implements OnInit {
   korisnik:User;
 
 
-  constructor(private route: ActivatedRoute,private navCtrl: NavController,private adService:AddNewAdService,private loadingCtrl: LoadingController,private http: HttpClient,private authService: AuthService, private AdService: AddNewAdService, private modalCtrl: ModalController, private routerOutlet: IonRouterOutlet) { }
+  constructor(private rourer: Router,private nav: NavController,private route: ActivatedRoute,private navCtrl: NavController,private adService:AddNewAdService,private loadingCtrl: LoadingController,private http: HttpClient,private authService: AuthService, private AdService: AddNewAdService, private modalCtrl: ModalController, private routerOutlet: IonRouterOutlet) { }
 
   get nekretnine() {
     return this._nek.asObservable();
@@ -83,7 +83,9 @@ userEmail.subscribe(onNext: { userEmail in
 
 */
 
-  ngOnInit() {
+ngOnInit(){}
+
+ionViewWillEnter() {
       
     this.nekSub = this.AdService.nekretninePrave.subscribe((nekretninePrave)=>
       {
@@ -171,7 +173,7 @@ vratiUsera(){
       this.adService.deleteNekr(idd).subscribe(() => {
         //ovde ne prepoznaje id !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         loadingEl.dismiss();
-       // this.navCtrl.navigateBack('/profile');
+        this.rourer.navigateByUrl('/home');
       });
     });
   }

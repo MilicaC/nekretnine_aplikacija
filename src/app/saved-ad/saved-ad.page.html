@@ -23,6 +23,7 @@
         <ion-label class="ion-text-wrap"  ><div class="adrGrad">{{Nekretnina.Adresa}},{{Nekretnina.Grad}}</div> </ion-label>
         <ion-label> <div class="adrGrad">    {{Nekretnina.Cena}} € </div></ion-label>
         <ion-item href="/home/{{Nekretnina.id}}" detail></ion-item>
+        <ion-button (click)="izbrisiNekS(Nekretnina) "> <ion-icon  name="trash" > </ion-icon> </ion-button>
       </ion-item>
     
     

@@ -27,6 +27,7 @@ export class RealEstateComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private navCtrl: NavController,private adService:AddNewAdService,private loadingCtrl: LoadingController,private http: HttpClient,private authService: AuthService, private AdService: AddNewAdService, private modalCtrl: ModalController, private routerOutlet: IonRouterOutlet) { }
    
+  nizNekretnina: Nekretnina[];
 
   ngOnInit() {
     
@@ -84,12 +85,42 @@ export class RealEstateComponent implements OnInit {
   }
 
   sacuvajBtn(nek: Nekretnina){
+    if(this.daLiPostoji(nek)===true){
+        console.log('vraca true');
     this.adService.sacuvajMojuNekretninu(nek).subscribe(resData=>{
       console.log("uspesno uneto");
       console.log(resData);
     })
-    
+    }else{
+      console.log("usao je u else");
+    }
   }
+
+  daLiPostoji(nek):boolean{
+    this.AdService.vratiSveNekretnine2().subscribe(nekrentineData=>
+      {console.log('ovo su nekretnine data', nekrentineData);
+      console.log('ucitano');
+        this.nizNekretnina = nekrentineData;
+               console.log(nekrentineData);
+               console.log(this.nizNekretnina);
+      })
+  
+
+   console.log('RED PRE FORA');
+   console.log(this.nizNekretnina);
+   for(const key in this.nizNekretnina){
+     console.log('USLO JE U FOR PETLJU');
+     console.log(nek.Adresa, this.nizNekretnina[key].Adresa, nek.BrojTelefona, this.nizNekretnina[key].BrojTelefona);
+      if(nek.Adresa === this.nizNekretnina[key].Adresa && nek.BrojTelefona === this.nizNekretnina[key].BrojTelefona){
+        
+        return true;
+      }
+   }
+   return false;
+
+  }
+  
+
 
   izbaciBtn(nek: Nekretnina){
     this.adService.izbaciIzSacuvanih(nek).subscribe(() => {
