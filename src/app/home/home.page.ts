@@ -30,8 +30,7 @@ export class HomePage implements OnInit {
 // i ovuda je nesto cackala u 5.6
 ionViewWillEnter(){
   this.AdService.VratiSveNekretnine().subscribe(nekrentineData=>
-    {console.log(nekrentineData);
-    console.log('ucitano');
+    {
    const nekretnine:Nekretnina[]=[];
           
   for(const key in nekrentineData){
