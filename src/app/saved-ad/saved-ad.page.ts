@@ -55,4 +55,3 @@ izbrisiNekS(nek: Nekretnina){
 
 
 }
-

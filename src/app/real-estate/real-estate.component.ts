@@ -30,7 +30,13 @@ export class RealEstateComponent implements OnInit {
   nizNekretnina: Nekretnina[];
 
   ngOnInit() {
-    
+    this.AdService.vratiSveNekretnine2().subscribe(nekrentineData=>
+      {
+     
+        this.nizNekretnina = nekrentineData;
+
+      });
+
   }
 
   sacuvaj(nekretnine:Nekretnina){
@@ -39,9 +45,7 @@ export class RealEstateComponent implements OnInit {
   }
 /*  */
 
-  PrebaciUSacuvano(nekretnine){
-    console.log(nekretnine);
-  }
+ 
 
   change(Sacuvano){
     if(Sacuvano == true){
@@ -54,7 +58,6 @@ export class RealEstateComponent implements OnInit {
   naPromenu(form: NgForm, nek:Nekretnina){
    /*  if(form.value.Sacuvano == true){
        console.log("treba dodati u sacuvane");
-
        this.AdService.dodajUSacuvane(nek.userId).subscribe(resData=>
         {console.log("Uspesno uneto");
       console.log(resData);
@@ -82,42 +85,47 @@ export class RealEstateComponent implements OnInit {
     await modal.present();
 
  
+
   }
 
+
   sacuvajBtn(nek: Nekretnina){
-    if(this.daLiPostoji(nek)===true){
-        console.log('vraca true');
+  
+    if(this.daLiPostoji(nek,this.nizNekretnina)===false){
+
     this.adService.sacuvajMojuNekretninu(nek).subscribe(resData=>{
       console.log("uspesno uneto");
-      console.log(resData);
+      this.nizNekretnina.push(nek);
+
     })
     }else{
-      console.log("usao je u else");
+      console.log("nije unet");
     }
   }
 
-  daLiPostoji(nek):boolean{
-    this.AdService.vratiSveNekretnine2().subscribe(nekrentineData=>
-      {console.log('ovo su nekretnine data', nekrentineData);
-      console.log('ucitano');
-        this.nizNekretnina = nekrentineData;
-               console.log(nekrentineData);
-               console.log(this.nizNekretnina);
-      })
-  
 
-   console.log('RED PRE FORA');
-   console.log(this.nizNekretnina);
-   for(const key in this.nizNekretnina){
-     console.log('USLO JE U FOR PETLJU');
-     console.log(nek.Adresa, this.nizNekretnina[key].Adresa, nek.BrojTelefona, this.nizNekretnina[key].BrojTelefona);
-      if(nek.Adresa === this.nizNekretnina[key].Adresa && nek.BrojTelefona === this.nizNekretnina[key].BrojTelefona){
+
+
+
+  daLiPostoji(nek2:Nekretnina,niz: Nekretnina[]):boolean{
+    let id1:string;
+    
+    console.log(niz);
+
+   for(const key in niz){
+      
+
+      if(nek2.Adresa === niz[key].Adresa && nek2.BrojTelefona === niz[key].BrojTelefona ) {
+
+        console.log('userNekretnine= ',nek2.userId,'User iz niza',niz[key].userId )
         
         return true;
       }
    }
-   return false;
 
+
+   return false;
+   
   }
   
 

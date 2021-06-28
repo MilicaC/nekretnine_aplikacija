@@ -80,7 +80,6 @@ export class ProfilePage implements OnInit {
 /*
 userEmail.subscribe(onNext: { userEmail in
     // Do something with `userEmail`.
-
 */
 
 ngOnInit(){}
@@ -182,5 +181,3 @@ vratiUsera(){
   
 
   }
-
-

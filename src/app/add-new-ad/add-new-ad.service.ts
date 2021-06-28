@@ -127,17 +127,14 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
 
 
   sacuvajMojuNekretninu(nek: Nekretnina) {
-    console.log("ulazi u metodu");
-    console.log(nek);
+
     let generatedId;
   let novaNekr: Nekretnina;
   let fetchedUserId: string;
-  console.log("ispred prvog return-a");
   return this.authService.userId.pipe(
     take(1),
     switchMap(userId => {
       fetchedUserId = userId;
-      console.log(userId);
       novaNekr = new Nekretnina(
         null, nek.Adresa, nek.Grad, nek.Drzava, nek.GodinaGradnje,
             nek.Kvadratura, nek.Cena, nek.BrojTelefona, nek.Email, nek.BrojSpratova, nek.PovrsinaDvorista, nek.UrlSlike,
@@ -145,7 +142,6 @@ private _nek2 = new BehaviorSubject<Nekretnina2[]>([]);
             nek.NamestenStan, nek.Opis, fetchedUserId
             //mozda je ovde bila greska sve vreme sto nisam imala nek.
       );
-      console.log(novaNekr);
       return this.http.post<{ name: string }>(
         `https://realestateapp-ddf22-default-rtdb.europe-west1.firebasedatabase.app/save-ad.json`, novaNekr);
     }),

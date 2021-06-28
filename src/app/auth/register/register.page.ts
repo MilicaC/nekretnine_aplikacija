@@ -58,7 +58,8 @@ export class RegisterPage implements OnInit {
        });
        (await toast).present();
        this.registerForm.reset();
-      }else if(this.registerForm.get('Lozinka') != this.registerForm.get('Ponovilozinku')){
+      }else if(this.registerForm.value.Lozinka!= this.registerForm.value.Ponovilozinku){
+        
         const toast= this.toastCtrl.create({
           message: "Ne poklapaju se unete lozinke.",
           duration: 3000
