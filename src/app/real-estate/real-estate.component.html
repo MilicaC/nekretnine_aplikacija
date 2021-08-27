@@ -1,43 +1,43 @@
- <ion-card >
-    <ion-card-header >
+<ion-card >
+  <ion-card-header >
 
 
-      <ion-card-subtitle (click)="otvoriModalZaDetalje(nekretnine)">{{nekretnine.Adresa}}</ion-card-subtitle>
-      <ion-card-title>{{nekretnine.Grad}}</ion-card-title>
-      <!-- <form #saveForm="ngForm"> -->
-      
-        <!-- <ion-toggle ng-checked="true"  ngModel name="Sacuvano" (ionChange) = "naPromenu(saveForm, nekretnine)"></ion-toggle>
-        Sačuvaj -->
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-button (click)="sacuvajBtn(nekretnine)" shape="round"><ion-icon name="bookmark-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-            
-            <ion-col>
+    <ion-card-subtitle (click)="otvoriModalZaDetalje(nekretnine)">{{nekretnine.Adresa}}</ion-card-subtitle>
+    <ion-card-title>{{nekretnine.Grad}}</ion-card-title>
+    <!-- <form #saveForm="ngForm"> -->
+    
+      <!-- <ion-toggle ng-checked="true"  ngModel name="Sacuvano" (ionChange) = "naPromenu(saveForm, nekretnine)"></ion-toggle>
+      Sačuvaj -->
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="sacuvajBtn(nekretnine)" shape="round"><ion-icon name="bookmark-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          
+          <ion-col>
 
-            
-            </ion-col>
-            
-          </ion-row>
-        </ion-grid>
-       
-
-        
-      
-      
-
+          
+          </ion-col>
+          
+        </ion-row>
+      </ion-grid>
      
-      <!-- </form> -->
+
       
+    
+    
+
+   
+    <!-- </form> -->
+    
 
 
-    </ion-card-header>
+  </ion-card-header>
 
-    <ion-card-content>
-      <img src={{nekretnine.UrlSlike}} class="mainImage"/>
-      <div class="price"> € {{nekretnine.Cena}}</div>
-      {{nekretnine.Opis}}
-    </ion-card-content>
-  </ion-card>
+  <ion-card-content>
+    <img src={{nekretnine.UrlSlike}} class="mainImage"/>
+    <div class="price"> € {{nekretnine.Cena}}</div>
+    {{nekretnine.Opis}}
+  </ion-card-content>
+</ion-card>
